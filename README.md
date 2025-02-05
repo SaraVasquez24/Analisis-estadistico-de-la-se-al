@@ -14,7 +14,7 @@ from math import sqrt
 `scipy.io  loadmat` Esta nos permite cargar archivos de MATLAB, en este caso nuestra señal fue extraida de la base de datos Physionet en formato `.mat`.
 `math sqrt` Se usa para calcular las raices cuadradas.
 
-##Carga de la señal
+## Carga de la señal
 
 ```
 x=loadmat('100m.mat')
@@ -34,7 +34,7 @@ t=np.linspace(0,np.size(ecg),np.size(ecg))*tiem_muest
 `tiem_muest=1/fs` Calcula el tiempo que hay entre una muestra y otra
 `np.linspace(0,np.size(ecg),np.size(ecg))*tiem_muest` Esta linea genera un vector de tiempo en segundos.
 
-##Gráfica de la señal
+## Gráfica de la señal
 ```
 plt.figure(figsize=(10, 5))  # Tamaño más grande para mejor visualización
 plt.plot(t, ecg, color='blue', linewidth=1.2, label="Señal ECG")  # Línea azul y más gruesa
@@ -45,10 +45,10 @@ plt.grid(True, linestyle="--", alpha=0.6)  # Agregar cuadrícula con línea punt
 plt.legend(loc="upper right")  # Agregar leyenda
 plt.show()
 ```
-<img width="620" alt="Figure 2025-02-04 232930" src="https://github.com/user-attachments/assets/fb672122-3fbe-4493-a042-ed4b4fac4224" />
+<img width="620" alt="Figure 2025-02-04 232930" src="https://github.com/user-attachments/assets/2bef727c-3043-4dae-959c-0a53e8d33c20" />
 
 
-##Histograma de la señal
+## Histograma de la señal
 ```
 plt.hist(ecg.flatten(), bins=50, color="yellow", ec="black")
 plt.xlabel("Valores del ECG (mV)", fontsize=12,fontweight='bold')
@@ -58,7 +58,10 @@ plt.show()
 ```
 `plt.hist(ecg.flatten(), bins=50, color="yellow", ec="black")`Aqui se grafica un histograma de los valores del ECG, con 50 divisiones o barras que hace referencia a `bins=50`.
 
-##Cálculo de Media y Desviación Estándar
+<img width="391" alt="Figure 2025-02-04 232922" src="https://github.com/user-attachments/assets/da141738-1294-4ed0-8f8b-3a3a2bce302c" />
+
+
+## Cálculo de Media y Desviación Estándar
 ```
 def desviacion_estandar(valores, media):
     suma = 0
@@ -88,7 +91,7 @@ print('El tipo de distribución del histograma es sesgado hacia la izquierda')
 ```
 Se calcula la media obteniendo el promedio de la señal,  la desviación estándar usando la fórmula estadística y el coeficiente de variación, además se muestran los resultados obtenidos.
 
-##Cálculo con función
+## Cálculo con función
 
 ```
 media_con_func = np.mean(ecg.flatten())
@@ -97,7 +100,7 @@ print ('La media utilizando funciones de librerias es: {}'.format(media_con_func
 print ('La desviación estandar utilizando funciones de librerias es: {}'.format(desviacion_estan_func))
 ```
 
-##Añadir ruido y calcular SNR
+## Añadir ruido y calcular SNR
 ```
 frecuencia1=1000
 desviacion_estandar_ecg = np.std(ecg.flatten())  # Desviación estándar de la señal
@@ -122,6 +125,7 @@ SNR = E_s2 / (o_2 * N)
 
 print('El SNR de la señal con ruido gaussiano en alta frecuencia es: {} dB'.format(SNR))
 
+<img width="620" alt="Figure 2025-02-04 232915" src="https://github.com/user-attachments/assets/187e0c00-578b-4e4b-8cf3-698282dcd367" />
 
 
 
@@ -149,6 +153,9 @@ SNR = E_s2 / (o_2 * N)
 
 print('El SNR de la señal con ruido gaussiano en baja frecuencia es: {} dB'.format(SNR))
 ```
+<img width="620" alt="Figure 2025-02-04 232954" src="https://github.com/user-attachments/assets/8867165b-584d-4cb7-9209-8d8b7c8e66a1" />
+
+
 Principalmente se genera un ruido gaussiano con una desviación estándar muy parecida a la de la señal, se le suma una onda senoidal de 1000 Hz, que hace referencia a la `frecuencia1`.
 Luego graficamos la señal que obtuvimos con el ruido, y calculamos el SNR por medio de la formula estadística.
 `E_s2`Calcula la energia de la señal
@@ -156,7 +163,7 @@ Luego graficamos la señal que obtuvimos con el ruido, y calculamos el SNR por m
 `SNR=E_s2/(o_2*N)` Esta fórmula calcula la relación señal-ruido.
 Posteriormente se imprime el valor de esta relacion y se hace nuevamente para la baja frecuencia.
 
-##Ruido Impulsivo
+## Ruido Impulsivo
 ```
 # Añadir ruido impulsivo
 prob = 0.05  # Probabilidad de impulsos
@@ -181,6 +188,7 @@ SNR_impulso = E_s2_imp / (o_2_imp * N)
 
 print('El SNR de la señal con ruido impulso de alta frecuencia es: {} dB'.format(SNR_impulso))
 
+<img width="626" alt="Figure 2025-02-04 232851" src="https://github.com/user-attachments/assets/e3d5ea42-4072-4118-b77a-0f1ad04f8679" />
 
 
 
@@ -207,12 +215,15 @@ SNR_impulso = E_s2_imp / (o_2_imp * N)
 
 print('El SNR de la señal con ruido impulso de baja frecuencia es: {} dB'.format(SNR_impulso))
 ```
+<img width="620" alt="Figure 2025-02-04 232842" src="https://github.com/user-attachments/assets/aa48076c-3546-442f-9783-e1953c63821f" />
+
+
 Para este ruido, se introduce un ruido impulsivo con probabilidad de 5%
 `ruido_impulsivo`Genera picos aleatorios en la señal.
 Si se modifica el valor de la amplitud, disminuyendo la amplitud del ruido, la señal original se vuelve mas dominante y el SNR aumenta.
 Por consiguiente se imprime el valor, y se hace el mismo proceso para la baja frecuencia.
 
-##Ruido Artefacto
+## Ruido Artefacto
 ```
 # hacemos el ruido tipo artefacto (Alta frecuencia)
 ruido_artefacto = np.random.normal(0, desviacion_estandar_ecg, ecg.shape) +  1* np.sin(2 * np.pi * 50* t).reshape(ecg.shape)
@@ -236,6 +247,7 @@ SNR_artefacto = E_s2_artefacto / (o_2_artefacto * N)
 # mostrar el SNR, ruido artefacto
 print("El SNR de la señal con ruido artefacto en alta frecuencia es: {} dB".format(SNR_artefacto))
 
+<img width="620" alt="Figure 2025-02-04 232834" src="https://github.com/user-attachments/assets/2b410ea7-c3c6-4182-90b1-469e4a5425f4" />
 
 
 # hacemos el ruido tipo artefacto (Baja frecuencia)
@@ -261,8 +273,33 @@ SNR_artefacto = E_s2_artefacto / (o_2_artefacto * N)
 print("El SNR de la señal con ruido artefacto en baja frecuencia es: {} dB".format(SNR_artefacto))
 
 ```
+<img width="626" alt="Figure 2025-02-04 232812" src="https://github.com/user-attachments/assets/739a3150-fe25-41d3-af80-bb73b41f369d" />
+
 `np.random.normal(0, desviacion_estandar_ecg, ecg.shape)` Se genera ruido gaussiano con media 0 y una desviación estándar igual a la de la señal ECG original.
 `1 * np.sin(2 * np.pi * 50 * t).reshape(ecg.shape)` Se añade una señal senoidal de 50 Hz, lo que representa una interferencia de alta frecuencia.
 La suma de estos dos términos forma el ruido artefacto.
 `ecg_ruido_artefacto = ruido_artefacto + ecg`El ruido generado se suma a la señal original.
-Se calcula nuevamente el SNR, se imprime y se repite el proceso para baja frecuencia.# Analisis-estadistico-de-la-se-al
+Se calcula nuevamente el SNR, se imprime y se repite el proceso para baja frecuencia.
+```
+`np.random.normal(0, desviacion_estandar_ecg, ecg.shape)` Se genera ruido gaussiano con media 0 y una desviación estándar igual a la de la señal ECG original.
+`1 * np.sin(2 * np.pi * 50 * t).reshape(ecg.shape)` Se añade una señal senoidal de 50 Hz, lo que representa una interferencia de alta frecuencia.
+La suma de estos dos términos forma el ruido artefacto.
+Se calcula nuevamente el SNR, se imprime y se repite el proceso para baja frecuencia.
+
+
+## Resultados Impresos de los calculos hechos en el código:
+
+La desviación estandar es: 0.12253942948749433
+La media es: -0.20317361111111126
+El coeficiente de variación es: -0.603126699463348
+El tipo de distribución del histograma es sesgado hacia la izquierda
+La media utilizando funciones de librerias es: -0.2031736111111111
+La desviación estandar utilizando funciones de librerias es: 0.12252240894022379
+El SNR de la señal con ruido gaussiano en alta frecuencia es: 0.00011238064617759935 dB
+El SNR de la señal con ruido gaussiano en baja frecuencia es: 0.00011055939379764979 dB
+El SNR de la señal con ruido impulso de alta frecuencia es: 0.0025503172624808906 dB
+El SNR de la señal con ruido impulso de baja frecuencia es: 0.013968682057630513 dB
+El SNR de la señal con ruido artefacto en alta frecuencia es: 3.0434201403664637e-05 dB
+El SNR de la señal con ruido artefacto en baja frecuencia es: 0.0009267138968601924 dB
+`ecg_ruido_artefacto = ruido_artefacto + ecg`El ruido generado se suma a la señal original.
+
