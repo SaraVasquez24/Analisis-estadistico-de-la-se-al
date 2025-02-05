@@ -124,11 +124,11 @@ N = len(ecg.flatten())  # Número de muestras
 SNR = E_s2 / (o_2 * N)
 
 print('El SNR de la señal con ruido gaussiano en alta frecuencia es: {} dB'.format(SNR))
-
+```
 <img width="620" alt="Figure 2025-02-04 232915" src="https://github.com/user-attachments/assets/187e0c00-578b-4e4b-8cf3-698282dcd367" />
 
 
-
+```
 # Añadir ruido gaussiano (Baja frecuencia)
 frecuencia1=50
 desviacion_estandar_ecg = np.std(ecg.flatten())  # Desviación estándar de la señal
@@ -187,10 +187,10 @@ o_2_imp = np.var(ruido_impulsivo)  # Varianza del ruido
 SNR_impulso = E_s2_imp / (o_2_imp * N)
 
 print('El SNR de la señal con ruido impulso de alta frecuencia es: {} dB'.format(SNR_impulso))
-
+```
 <img width="626" alt="Figure 2025-02-04 232851" src="https://github.com/user-attachments/assets/e3d5ea42-4072-4118-b77a-0f1ad04f8679" />
 
-
+```
 
 # Añadir ruido impulsivo (Baja frecuencia)
 prob = 0.05  # Probabilidad de impulsos
@@ -246,10 +246,10 @@ SNR_artefacto = E_s2_artefacto / (o_2_artefacto * N)
 
 # mostrar el SNR, ruido artefacto
 print("El SNR de la señal con ruido artefacto en alta frecuencia es: {} dB".format(SNR_artefacto))
-
+```
 <img width="620" alt="Figure 2025-02-04 232834" src="https://github.com/user-attachments/assets/2b410ea7-c3c6-4182-90b1-469e4a5425f4" />
 
-
+```
 # hacemos el ruido tipo artefacto (Baja frecuencia)
 ruido_artefacto = np.random.normal(0, desviacion_estandar_ecg, ecg.shape) + 0.05 * np.sin(2 * np.pi * 50* t).reshape(ecg.shape)
 ecg_ruido_artefacto= ruido_artefacto + ecg
