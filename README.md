@@ -280,13 +280,6 @@ print("El SNR de la señal con ruido artefacto en baja frecuencia es: {} dB".for
 La suma de estos dos términos forma el ruido artefacto.
 `ecg_ruido_artefacto = ruido_artefacto + ecg`El ruido generado se suma a la señal original.
 Se calcula nuevamente el SNR, se imprime y se repite el proceso para baja frecuencia.
-```
-`np.random.normal(0, desviacion_estandar_ecg, ecg.shape)` Se genera ruido gaussiano con media 0 y una desviación estándar igual a la de la señal ECG original.
-`1 * np.sin(2 * np.pi * 50 * t).reshape(ecg.shape)` Se añade una señal senoidal de 50 Hz, lo que representa una interferencia de alta frecuencia.
-La suma de estos dos términos forma el ruido artefacto.
-Se calcula nuevamente el SNR, se imprime y se repite el proceso para baja frecuencia.
-`ecg_ruido_artefacto = ruido_artefacto + ecg`El ruido generado se suma a la señal original.
-
 
 
 ## Resultados Impresos de los calculos hechos en el código:
@@ -309,3 +302,5 @@ El SNR de la señal con ruido artefacto en baja frecuencia es: 0.000926713896860
 -Las imágenes obtenidas en este trabajo fueron generadas a partir del código implementado en Python, utilizando la librería Matplotlib para la visualización de señales fisiológicas. 
 -La señal de ECG utilizada en los análisis fue descargada de la base de datos PhysioNet, una plataforma de acceso libre que proporciona registros fisiológicos para investigación biomédica.
 [1]	“PhysioBank ATM”, Physionet.org. [En línea]. Disponible en: https://archive.physionet.org/cgi-bin/atm/ATM. 
+
+
