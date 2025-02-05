@@ -285,6 +285,8 @@ Se calcula nuevamente el SNR, se imprime y se repite el proceso para baja frecue
 `1 * np.sin(2 * np.pi * 50 * t).reshape(ecg.shape)` Se añade una señal senoidal de 50 Hz, lo que representa una interferencia de alta frecuencia.
 La suma de estos dos términos forma el ruido artefacto.
 Se calcula nuevamente el SNR, se imprime y se repite el proceso para baja frecuencia.
+`ecg_ruido_artefacto = ruido_artefacto + ecg`El ruido generado se suma a la señal original.
+
 
 
 ## Resultados Impresos de los calculos hechos en el código:
@@ -301,5 +303,9 @@ El SNR de la señal con ruido impulso de alta frecuencia es: 0.00255031726248089
 El SNR de la señal con ruido impulso de baja frecuencia es: 0.013968682057630513 dB
 El SNR de la señal con ruido artefacto en alta frecuencia es: 3.0434201403664637e-05 dB
 El SNR de la señal con ruido artefacto en baja frecuencia es: 0.0009267138968601924 dB
-`ecg_ruido_artefacto = ruido_artefacto + ecg`El ruido generado se suma a la señal original.
 
+
+## Bibliografía
+-Las imágenes obtenidas en este trabajo fueron generadas a partir del código implementado en Python, utilizando la librería Matplotlib para la visualización de señales fisiológicas. 
+-La señal de ECG utilizada en los análisis fue descargada de la base de datos PhysioNet, una plataforma de acceso libre que proporciona registros fisiológicos para investigación biomédica.
+[1]	“PhysioBank ATM”, Physionet.org. [En línea]. Disponible en: https://archive.physionet.org/cgi-bin/atm/ATM. 
